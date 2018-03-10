@@ -13,7 +13,7 @@
             <div class="thumbnail">
                <img class="img-responsive" src="<%= j_food.image %>">
                <div class="caption-full">
-                   <h4 class="pull-right">$<%=j_food.price%>/night</h4>
+                   <h4 class="pull-right">$<%=j_food.price%></h4>
                    <h4><a><%= j_food.name %></a></h4>
                    <p><%= j_food.description %></p>
                    <p>
@@ -51,6 +51,7 @@
                 </div>
             <% })%>
             </div>
+            <a href="/j_foods">Go Back</a>
         </div>
     </div>
 </div>            

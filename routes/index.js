@@ -50,7 +50,8 @@ router.get("/login", function(req, res) {
 //middleware
 router.post("/login", passport.authenticate("local", {
     successRedirect: "/j_foods",
-    failureRedirect: "/login"
+    failureRedirect: "/login",
+    failureFlash: true
 }), function(req, res) {});
 
 
@@ -59,7 +60,7 @@ router.post("/login", passport.authenticate("local", {
 //====================
 router.get("/logout", function(req, res) {
     req.logout();
-    req.flash("success", "Logged You Out!");
+    req.flash("success", "Logged Out!");
     res.redirect("/j_foods");
 });
 
