@@ -22,7 +22,7 @@ router.post("/register", function(req, res) {
         }
         else {
             passport.authenticate("local")(req, res, function() {
-            req.flash("success","Welcome to YelpCamp, " + user.username);
+            req.flash("success","Welcome to J Food Blogger, " + user.username);
             res.redirect("/j_foods");
             });
         }

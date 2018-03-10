@@ -71,11 +71,9 @@ router.get("/:comment_id/edit", middleware.checkCommentOwnership, function (req,
 });
 
 //comment update route
-router.put("/:id", middleware.checkCommentOwnership, function(req, res) {
-    //senitize data
-    // req.body.j_food.body = req.sanitize(req.body.comment.body);
+router.put("/:comment_id", function(req, res) {
     //find comment ID in DB
-    Comment.findByIdAndUpdate(req.params.id, req.body.comment, function(err, updatedComment) {
+    Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment) {
         if (err) {
             req.flash("error","Something went wrong.");
             res.redirect("back");
