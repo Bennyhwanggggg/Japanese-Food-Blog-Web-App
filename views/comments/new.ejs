@@ -1,0 +1,25 @@
+
+<% include ../partials/header %>
+
+<h1>Post new comment</h1>
+
+<div class="container">
+    <div class="row">
+        <div col-lg-12 col-md-12 col-sm-12>
+            <h1 style="text-align:center;">Add New Comment to <%=j_food.name %></h1>
+            <div style="width:30%; margin:25px auto;">
+                <form action="/j_foods/<%= j_food._id %>/comments" method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type=text, name="comment[text]" placeholder="text">
+                    </div>
+                    <div class="form-group"> 
+                   <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                    </div>
+                </form>
+                <a href="/j_foods/<%= j_food._id %>">Go Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

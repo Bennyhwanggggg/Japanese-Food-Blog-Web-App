@@ -1,0 +1,36 @@
+<% include ../partials/header %>
+
+
+
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1>Welcome To J Food Blogger!</h1>
+            <p>View the best Japanese food shared by locals and travellers</p>
+            <p>
+             <a  class="btn btn-primary btn-lg" href="/j_foods/new">Add a new entry</a>   
+            </p>
+        </div>
+    </header>
+    
+        <div class="row" style="display:flex; flex-wrap: wrap">
+            <% j_foods.forEach(function(j_food){%>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="thumbnail">
+                         <img src="<%= j_food.image %>">
+                         <div class="caption">
+                            <h4><%= j_food.name %></h4>
+                         </div>
+                         <p>
+                             <a href="/j_foods/<%= j_food._id%>" class="btn btn-primary">More Info</a></a>
+                         </p>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+</div>
+
+<% include ../partials/footer %>
+
+
+
