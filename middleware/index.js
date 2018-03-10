@@ -8,14 +8,14 @@ middlewareObj.checkj_foodOwnership = function (req, res, next) {
        if (req.isAuthenticated()) {
         j_food.findById(req.params.id, function(err, foundj_food) {
             if (err) {
-                req.flash("error","j_food not found.");
+                req.flash("error","post not found.");
                 res.redirect("back");
             } else {
                 //does the user own the j_food?
                 if (foundj_food.author.id.equals(req.user._id)) {
                     next();
                 } else {
-                    req.flash("error","You do not have permission to this j_food.");
+                    req.flash("error","You do not have permission to this post.");
                     res.redirect("back");
                 }
             }

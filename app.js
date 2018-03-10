@@ -60,5 +60,5 @@ app.use("/j_foods", j_foodRoutes);
 
 //PORT to listen for request
 app.listen(process.env.PORT, process.env.IP, function() {
-    console.log("YelpCamp App Server has Started!!!");
+    console.log("J Food Blogger App Server has Started!!!");
 });

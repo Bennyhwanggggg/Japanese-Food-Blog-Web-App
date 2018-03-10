@@ -3,7 +3,7 @@ var router = express.Router({ mergeParams: true });
 var Comment = require("../models/comment");
 var j_food = require("../models/j_food");
 var middleware = require("../middleware")
-
+var moment = require("moment")
 
 
 
@@ -45,6 +45,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
                     //add username and ID to comment
                     comment.author.id = req.user._id;
                     comment.author.username = req.user.username;
+                    comment.author.dateAdded = moment(Date.now()).format("DD/MM/YYYY");
                     //Save comment
                      comment.save();
                     j_food.comments.push(comment._id);

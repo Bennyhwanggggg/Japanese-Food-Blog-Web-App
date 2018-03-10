@@ -40,7 +40,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
         }
         else {
             //redirect back to j_foods page
-            req.flash("success","j_food successfully added.");
+            req.flash("success","post successfully added.");
             res.redirect("/j_foods");
         }
     });
@@ -97,7 +97,7 @@ router.put("/:id", middleware.checkj_foodOwnership, function(req, res) {
             res.redirect("/j_foods");
         }
         else {
-            req.flash("success","j_food successfully updated.");
+            req.flash("success","post successfully updated.");
             res.redirect("/j_foods/" + req.params.id);
 
         }
@@ -114,7 +114,7 @@ router.delete("/:id", middleware.checkj_foodOwnership, function(req, res) {
 
         }
         else {
-            req.flash("success","j_food successfully deleted.");
+            req.flash("success","post successfully deleted.");
             res.redirect("/j_foods");
 
         }
