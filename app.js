@@ -22,8 +22,8 @@ var commentRoutes    = require("./routes/comments"),
 
 //Using packages
 //mongoose.connect(process.env.DATAURL); // testing database
-mongoose.connect("mongodb://localhost/j_food");
-// mongoose.connect("mongodb://jblogadmin:blog415@ds253468.mlab.com:53468/jfoodblog")
+// mongoose.connect("mongodb://localhost/j_food");
+// // mongoose.connect("mongodb://jblogadmin:blog415@ds253468.mlab.com:53468/jfoodblog")
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSanitizer());
 app.set("view engine", "ejs");
