@@ -13,9 +13,11 @@ router.get("/register", function(req, res) {
 
 //handling user sign up
 router.post("/register", function(req, res) {
-    req.body.username;
-    req.body.password;
-    User.register(new User({ username: req.body.username }), req.body.password, function(err, user) {
+    var newUser = new User({username: req.body.username});
+    if(req.body.adminCode === "TWICESANATZYU415"){
+        newUser.isAdmin = true;
+    }
+    User.register(newUser, req.body.password, function(err, user) {
         if (err) {
             req.flash("error", err.message);
             res.redirect('/register');

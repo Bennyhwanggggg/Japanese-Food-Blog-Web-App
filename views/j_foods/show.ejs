@@ -19,7 +19,7 @@
                    <p>
                        <em>Submitted By <%= j_food.author.username %></em>
                    </p>
-                   <% if (currentUser && j_food.author.id.equals(currentUser._id)){ %>
+                   <% if (currentUser && j_food.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
                    <a class="btn btn-warning" href="/j_foods/<%= j_food._id %>/edit"> Edit </a>
                    <form class="delete-form" action="/j_foods/<%= j_food._id %>?_method=DELETE" method="POST" >
                        <button  class="btn btn-danger">Delete</button>
@@ -40,7 +40,7 @@
                         <p>
                           <%= comment.text %>
                         </p>
-                    <% if (currentUser && comment.author.id.equals(currentUser._id)){ %>
+                    <% if (currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
                         <a class="btn btn-xs btn-warning" href="/j_foods/<%=j_food._id%>/comments/<%=comment._id%>/edit">Edit 
                         </a>
                         <form class="delete-form" action="/j_foods/<%=j_food._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">

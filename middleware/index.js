@@ -12,7 +12,7 @@ middlewareObj.checkj_foodOwnership = function (req, res, next) {
                 res.redirect("/j_foods");
             } else {
                 //does the user own the j_food?
-                if (foundj_food.author.id.equals(req.user._id)) {
+                if (foundj_food.author.id.equals(req.user._id) || req.user.isAdmin) {
                     next();
                 } else {
                     req.flash("error","You do not have permission to this post.");
@@ -43,7 +43,7 @@ middlewareObj.checkCommentOwnership = function (req, res, next) {
                         res.redirect("/j_foods");
                     } else {
                         //does the user own the comment?
-                        if (foundComment.author.id.equals(req.user._id)) {
+                        if (foundComment.author.id.equals(req.user._id) || req.user.isAdmin) {
                             next();
                         } else {
                             req.flash("error","You do not have permission to this comment.");

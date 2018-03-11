@@ -5,10 +5,16 @@
         <div style="width: 30%; margin: 25px auto;">
             <form action="/register" method="post">
                 <div class="form-group">
+                    <label for="username">Username</label>
                     <input class="form-control" type="text" name="username" placeholder="username">
                 </div>
                 <div class="form-group">
+                    <label for="password">Password</label>
                     <input class="form-control" type="password" name="password" placeholder="password">
+                </div>
+                <div class="form-group">
+                    <label for="adminCode">Admin Code [For admins only]</label>
+                    <input class="form-control" type="text" name="adminCode" placeholder="Admin Code">
                 </div>
                 <div class="form-group">
                     <button class="btn btn-lg btn-primary btn-block">Sign Up!</button>

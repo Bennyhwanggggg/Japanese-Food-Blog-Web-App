@@ -1,6 +1,8 @@
 <% include ../partials/header %>
 
-
+<% if(currentUser && currentUser.isAdmin){ %>
+    <h1>Logged in as Admin</h1>
+<% } %>
 
 <div class="container">
     <header class="jumbotron">
