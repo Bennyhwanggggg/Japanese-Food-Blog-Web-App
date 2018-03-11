@@ -36,16 +36,23 @@ middlewareObj.checkCommentOwnership = function (req, res, next) {
                 req.flash("error","Comment not found.");
                 res.redirect("/j_foods");
             } else {
-                //does the user own the comment?
-                if (foundComment.author.id.equals(req.user._id)) {
-                    next();
-                } else {
-                    req.flash("error","You do not have permission to this comment.");
-                    res.redirect("back");
-                }
+                
+                j_food.findById(req.params.id, function(err, foundj_food) {
+                    if (err || !foundj_food) {
+                        req.flash("error","post not found.");
+                        res.redirect("/j_foods");
+                    } else {
+                        //does the user own the comment?
+                        if (foundComment.author.id.equals(req.user._id)) {
+                            next();
+                        } else {
+                            req.flash("error","You do not have permission to this comment.");
+                            res.redirect("back");
+                        }
+                    }
+                })
             }
         })
-        
     } else {
         req.flash("error","You need to be logged in to do that.");
         res.redirect("back"); 

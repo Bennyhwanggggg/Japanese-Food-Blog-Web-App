@@ -61,8 +61,9 @@ router.get("/new",middleware.isLoggedIn, function(req, res) {
 router.get("/:id", function(req, res) {
     //find the j_food with provided ID
     j_food.findById(req.params.id).populate("comments").exec(function(err, foundj_food) {
-        if (err) {
+        if (err || !foundj_food) {
             req.flash("error","Something went wrong.");
+            res.redirect("/j_foods");
         }
         else {
             //Render show template with that j_food
@@ -77,8 +78,9 @@ router.get("/:id", function(req, res) {
 router.get("/:id/edit", middleware.checkj_foodOwnership, function(req, res) {
     //find j_food ID in DB
     j_food.findById(req.params.id, function(err, foundj_food ) {
-        if (err) {
+        if (err || !foundj_food) {
              req.flash("error","Something went wrong.");
+             res.redirect("/j_foods");
         } else {
             //show to the edit page
             res.render("j_foods/edit",  { j_food: foundj_food }); 
@@ -93,7 +95,7 @@ router.put("/:id", middleware.checkj_foodOwnership, function(req, res) {
     req.body.j_food.body = req.sanitize(req.body.j_food.body);
     //find j_food ID in DB
     j_food.findByIdAndUpdate(req.params.id, req.body.j_food, function(err, updatedj_food) {
-        if (err) {
+        if (err || !updatedj_food) {
             res.redirect("/j_foods");
         }
         else {

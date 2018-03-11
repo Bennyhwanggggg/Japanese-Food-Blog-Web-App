@@ -16,8 +16,9 @@ var moment = require("moment")
 router.get("/new", middleware.isLoggedIn, function(req, res) {
     // find the j_food with provided ID
     j_food.findById(req.params.id, function(err, j_food) {
-        if (err) {
-            console.log(err);
+        if (err || !j_food) {
+            req.flash("error","Something went wrong.");
+            return res.redirect("/j_foods");
         }
         else {
             //Render show template with that j_food
@@ -31,10 +32,10 @@ router.get("/new", middleware.isLoggedIn, function(req, res) {
 //==============================================================
 router.post("/", middleware.isLoggedIn, function(req, res) {
     // find the j_food with provided ID
-    j_food.findById(req.params.id, function(err, j_food) {
-        if (err) {
+    j_food.findById(req.params.id, function(err, foundj_food) {
+        if (err || !foundj_food) {
             req.flash("error","Something went wrong.");
-            res.redirect("/j_foods");
+            return res.redirect("/j_foods");
         }
         else {
             Comment.create(req.body.comment, function(err, comment) {
@@ -48,10 +49,10 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
                     comment.author.dateAdded = moment(Date.now()).format("DD/MM/YYYY");
                     //Save comment
                      comment.save();
-                    j_food.comments.push(comment._id);
-                    j_food.save();
+                    foundj_food.comments.push(comment._id);
+                    foundj_food.save();
                     req.flash("success","Comment successfully added.");
-                    res.redirect('/j_foods/' + j_food._id);
+                    res.redirect('/j_foods/' + foundj_food._id);
                 }
             });
         }
@@ -60,14 +61,20 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 
 //Comment edit route
 router.get("/:comment_id/edit", middleware.checkCommentOwnership, function (req, res) {
-    Comment.findById(req.params.comment_id, function (err, foundComment) {
-        if (err) {
-            req.flash("error","Something went wrong.");
-            res.redirect("back");
-        } else {
-          res.render("comments/edit", {j_food_id: req.params.id, comment: foundComment}); 
+    j_food.findById(req.params.id, function(err, foundj_food) {
+        if(err || !foundj_food){
+            req.flash("error", "Error has occured")
+            return res.redirect("/j_foods");
         }
-    });
+        Comment.findById(req.params.comment_id, function (err, foundComment) {
+            if (err) {
+                req.flash("error","Something went wrong.");
+                res.redirect("/j_foods");
+            } else {
+              res.render("comments/edit", {j_food_id: req.params.id, comment: foundComment}); 
+            }
+        });
+    })
     
 });
 
@@ -92,7 +99,7 @@ router.delete("/:comment_id", middleware.checkCommentOwnership, function(req, re
     Comment.findByIdAndRemove(req.params.comment_id, function(err) {
         if (err) {
             req.flash("error","Something went wrong.");
-            res.redirect("back");
+            res.redirect("/j_foods");
 
         }
         else {

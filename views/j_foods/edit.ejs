@@ -6,17 +6,17 @@
             <div style="width:30%; margin:25px auto;">
                 <form action="/j_foods/<%=j_food._id %>?_method=PUT" method="POST">
                     <div class="form-group">
-                        <input class="form-control" type=text, name="j_food[name]" value="<%= j_food.name %>">
+                        <input class="form-control" type="text" name="j_food[name]" value="<%= j_food.name %>">
                     </div>
                     <div class="form-group"> 
-                        <input class="form-control" type=text, name="j_food[image]" value="<%= j_food.image %>">
+                        <input class="form-control" type="text" name="j_food[image]" value="<%= j_food.image %>">
                     </div>
                     <div class="form-group"> 
-                        <input class="form-control" type=text, name="j_food[description]" value="<%= j_food.description%>">
+                        <input class="form-control" type="text" name="j_food[description]" value="<%= j_food.description%>">
                     </div>
                     <div class="form-group"> 
                     <div class="form-group"> 
-                        <input class="form-control" type=number, name="j_food[price]" value="<%= j_food.price%>">
+                        <input class="form-control" type="number" name="j_food[price]" value="<%= j_food.price%>">
                     </div>
                     <div class="form-group"> 
                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
