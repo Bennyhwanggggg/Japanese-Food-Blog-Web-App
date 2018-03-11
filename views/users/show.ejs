@@ -15,10 +15,10 @@
 			<% count++ %>
 		<% }); %>
 		<% if(count != 0){ %>
-			<ul>
+			<ul class="list-group">
 			
 			<% j_foods.forEach(function(j_food) { %>
-				<li><a href="/j_foods/<%= j_food.id %>"><%= j_food.name %></a></li>
+				<li class="list-group-item"><a href="/j_foods/<%= j_food.id %>"><%= j_food.name %></a></li>
 			<% }); %>
 			</ul>
 		<% } else { %>

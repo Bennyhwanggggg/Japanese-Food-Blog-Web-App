@@ -17,3 +17,36 @@
 .searchBar {
     margin-top: 8px;
 }
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  background-color: #e0d5d5;
+}
+
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.footer .container {
+    margin-top: 15px;
+}
+
+.jumbotron {
+    background-image: url("../images/header.jpg"); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: black;
+}
