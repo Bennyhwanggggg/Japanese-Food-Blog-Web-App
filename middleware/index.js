@@ -7,9 +7,9 @@ var middlewareObj = {};
 middlewareObj.checkj_foodOwnership = function (req, res, next) {
        if (req.isAuthenticated()) {
         j_food.findById(req.params.id, function(err, foundj_food) {
-            if (err) {
+            if (err || !foundj_food) {
                 req.flash("error","post not found.");
-                res.redirect("back");
+                res.redirect("/j_foods");
             } else {
                 //does the user own the j_food?
                 if (foundj_food.author.id.equals(req.user._id)) {
@@ -32,9 +32,9 @@ middlewareObj.checkj_foodOwnership = function (req, res, next) {
 middlewareObj.checkCommentOwnership = function (req, res, next) {
      if (req.isAuthenticated()) {
         Comment.findById(req.params.comment_id, function(err, foundComment) {
-            if (err) {
+            if (err || !foundComment) {
                 req.flash("error","Comment not found.");
-                res.redirect("back");
+                res.redirect("/j_foods");
             } else {
                 //does the user own the comment?
                 if (foundComment.author.id.equals(req.user._id)) {
