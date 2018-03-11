@@ -1,0 +1,30 @@
+<% include ../partials/header %>
+
+<div class="row">
+	<div class="col-md-4">
+			<h1><%= user.firstName + " " + user.lastName %></h1>
+		<div class="thumbnail">
+			<img src="<%= user.avatar %>" alt="user profile image">
+			<div class="caption"><a href="mailto:<%= user.email %>"><%= user.email %></a></div>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<h3><%= user.username %>'s posts:</h3>
+		<% var count = 0 %>
+		<% j_foods.forEach(function(j_food) { %>
+			<% count++ %>
+		<% }); %>
+		<% if(count != 0){ %>
+			<ul>
+			
+			<% j_foods.forEach(function(j_food) { %>
+				<li><a href="/j_foods/<%= j_food.id %>"><%= j_food.name %></a></li>
+			<% }); %>
+			</ul>
+		<% } else { %>
+			<p><%= user.firstName %> has not made any post yet.</p>
+		<% } %>
+	</div>
+</div>
+
+<% include ../partials/footer %>

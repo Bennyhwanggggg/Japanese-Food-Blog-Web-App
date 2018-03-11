@@ -21,8 +21,8 @@ var commentRoutes    = require("./routes/comments"),
     indexRoutes      = require("./routes/index");
 
 //Using packages
-mongoose.connect(process.env.DATAURL); // testing database
-// mongoose.connect("mongodb://localhost/j_food");
+// mongoose.connect(process.env.DATAURL); // testing database
+ mongoose.connect("mongodb://localhost/j_food");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSanitizer());

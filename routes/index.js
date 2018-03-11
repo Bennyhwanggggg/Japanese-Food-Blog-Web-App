@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var User = require("../models/user");
 var passport = require("passport");
+var j_food = require("../models/j_food");
 
 //=======================
 //Auth ROUTES
@@ -13,7 +14,12 @@ router.get("/register", function(req, res) {
 
 //handling user sign up
 router.post("/register", function(req, res) {
-    var newUser = new User({username: req.body.username});
+    var newUser = new User({username: req.body.username,
+                            firstName: req.body.firstName,
+                            lastName: req.body.lastName,
+                            email: req.body.email,
+                            avatar: req.body.avatar
+                        });
     if(req.body.adminCode === "TWICESANATZYU415"){
         newUser.isAdmin = true;
     }
@@ -66,7 +72,26 @@ router.get("/logout", function(req, res) {
     res.redirect("/j_foods");
 });
 
-
+//====================
+//User Profile
+//====================
+router.get("/users/:id", function(req, res) {
+   User.findById(req.params.id, function(err, foundUser){
+      if(err){
+          req.flash("error", "Something went wrong");
+          res.redirect("/j_foods");
+      } else {
+          j_food.find().where('author.id').equals(foundUser._id).exec(function(err, foodFound){
+              if(err) {
+                  req.flash("error", "Something went wrong...");
+                  res.redirect("/j_foods");
+              } else {
+                  res.render("users/show", {user: foundUser, j_foods: foodFound});
+              }
+          })
+      }
+   }); 
+});
 
 
 
