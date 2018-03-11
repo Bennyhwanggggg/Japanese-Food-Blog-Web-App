@@ -11,10 +11,18 @@
         <div class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/" >J Food</a>
+                    <a class="navbar-brand" href="/" >J Food Blogger</a>
                 </div>
                 <div class="collapse navbar-collapse">
                   <ul class="nav navbar-nav navbar-right">
+                      <li>
+                          <form action="/j_foods" method="GET" class="form-inline" id="j_food-search">
+                                <div class="form-group">
+                                    <input type="text" name="search" placeholder="Post search..." class="form-control searchBar">
+                                    <input type="submit" value="Search" class="btn btn-default searchBar">
+                                </div>
+                          </form>
+                      </li>
                       <% if(!currentUser){ %>
                           <li><a href="/login">Login</a></li>
                           <li><a href="/register">Sign Up</a></li>

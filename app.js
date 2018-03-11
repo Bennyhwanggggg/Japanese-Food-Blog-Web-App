@@ -15,14 +15,14 @@ var express          = require("express"),
     Comment          = require("./models/comment"),
     User             = require("./models/user")
     
-
 //requiring routes
 var commentRoutes    = require("./routes/comments"),
     j_foodRoutes = require("./routes/j_foods"),
     indexRoutes      = require("./routes/index");
 
 //Using packages
-mongoose.connect(process.env.DATAURL); // testing database
+//mongoose.connect(process.env.DATAURL); // testing database
+mongoose.connect("mongodb://localhost/j_food");
 // mongoose.connect("mongodb://jblogadmin:blog415@ds253468.mlab.com:53468/jfoodblog")
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSanitizer());
