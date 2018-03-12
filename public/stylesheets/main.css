@@ -3,7 +3,7 @@
 }
 
 .thumbnail {
-    padding: 0;
+    padding: 60px;
 }
 
 .thumbnail .caption-full {
@@ -16,6 +16,11 @@
 
 .searchBar {
     margin-top: 8px;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
 }
 
 /* Sticky footer styles
