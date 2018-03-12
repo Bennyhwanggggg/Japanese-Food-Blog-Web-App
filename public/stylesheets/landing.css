@@ -16,6 +16,10 @@ body {
   color: #fff;
 }
 
+#landing-header h4 {
+  color: #fff;
+}
+
 /*First we'll style the unordered list:*/
 .slideshow { 
   position: fixed;
