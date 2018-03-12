@@ -17,7 +17,7 @@
                    <h4><a><%= j_food.name %></a></h4>
                    <p><%= j_food.description %></p>
                    <p>
-                       <em>Submitted By <%= j_food.author.username %></em>
+                       <em>Submitted By <a href="/users/<%= j_food.author.id %>"><%= j_food.author.username %></a></em>
                    </p>
                    <% if (currentUser && j_food.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
                    <a class="btn btn-warning" href="/j_foods/<%= j_food._id %>/edit"> Edit </a>
