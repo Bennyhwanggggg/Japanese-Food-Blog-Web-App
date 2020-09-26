@@ -14,7 +14,7 @@ var express          = require("express"),
     j_food           = require("./models/j_food"),
     Comment          = require("./models/comment"),
     User             = require("./models/user"),
-    MongoDb          = require('mongodb')
+    MongoClient      = require('mongodb').MongoClient
     
 //requiring routes
 var commentRoutes    = require("./routes/comments"),
@@ -22,11 +22,9 @@ var commentRoutes    = require("./routes/comments"),
     indexRoutes      = require("./routes/index");
 
 //Using packages
-var url = process.env.DATA_URL || "mongodb://localhost/j_food";
-const MongoClient = MongoDb.MongoClient;
-const client = new MongoClient(url, { useNewUrlParser: true });
-client.connect(err => {
-    client.close();
+var url = process.env.DATA_URL || "mongo://local_data";
+mongoose.connect(url, { useNewUrlParser: true}, err => {
+    console.log('Database connection error: ' + err)
 })
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -64,8 +62,9 @@ app.use(indexRoutes);
 app.use("/j_foods", j_foodRoutes);
 app.use("/j_foods/:id/comments", commentRoutes);
 
-
 //PORT to listen for request
-app.listen(process.env.PORT, process.env.IP, function() {
-    console.log("J Food Blogger App Server has Started!!!");
+var port = process.env.PORT || 3000;
+var ip = process.env.IP || 'localhost';
+app.listen(port, ip, function() {
+    console.log(`J Food Blogger App Server has Started on ${ip}:${port}!!!`);
 });
