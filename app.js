@@ -21,7 +21,7 @@ var commentRoutes    = require("./routes/comments"),
     indexRoutes      = require("./routes/index");
 
 //Using packages
-var url = process.env.DATA_URL || "mongodb://localhost/j_food";
+var url = process.env.DATAURL || "mongodb://localhost/j_food";
 mongoose.connect(url); // testing database
 //mongoose.connect("mongodb://localhost/j_food");
 
