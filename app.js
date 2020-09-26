@@ -63,8 +63,6 @@ app.use("/j_foods", j_foodRoutes);
 app.use("/j_foods/:id/comments", commentRoutes);
 
 //PORT to listen for request
-var port = process.env.PORT || 3000;
-var ip = process.env.IP || 'localhost';
-app.listen(port, ip, function() {
-    console.log(`J Food Blogger App Server has Started on ${ip}:${port}!!!`);
+app.listen(process.env.PORT, process.env.IP, function() {
+    console.log(`J Food Blogger App Server has Started on ${process.env.IP}:${process.env.PORT}!!!`);
 });
