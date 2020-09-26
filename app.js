@@ -13,7 +13,8 @@ var express          = require("express"),
     cookieParser     = require("cookie-parser");
     j_food           = require("./models/j_food"),
     Comment          = require("./models/comment"),
-    User             = require("./models/user")
+    User             = require("./models/user"),
+    MongoDb          = require('mongodb')
     
 //requiring routes
 var commentRoutes    = require("./routes/comments"),
@@ -22,8 +23,11 @@ var commentRoutes    = require("./routes/comments"),
 
 //Using packages
 var url = process.env.DATA_URL || "mongodb://localhost/j_food";
-mongoose.connect(url); // testing database
-//mongoose.connect("mongodb://localhost/j_food");
+const MongoClient = MongoDb.MongoClient;
+const client = new MongoClient(url, { useNewUrlParser: true });
+client.connect(err => {
+    client.close();
+})
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSanitizer());
