@@ -16,7 +16,7 @@
     "cookie-parser": "^1.4.3",
     "dotenv": "^5.0.1",
     "ejs": "^2.5.7",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "express-sanitizer": "^1.0.3",
     "express-session": "^1.15.6",
     "method-override": "^2.3.10",
