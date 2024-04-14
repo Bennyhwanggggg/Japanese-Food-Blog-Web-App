@@ -16,7 +16,9 @@ This repo contains the source code for the website J Food Blogger. It is a blog 
 - Node.js and Express.js. Uses server side rendering to render each pages.  
 - MongoDB.  
 - Cloudinary for image storage and their APIs for image retrieval.  
-- Bootstrap.  
+- Bootstrap.
+- AWS Elastic Beanstalk.
+- Heroku (Previously deployed via Heroku when it still had free tier).
 
 ## How to run
 ```
